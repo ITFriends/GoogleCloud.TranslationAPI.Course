@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Translator.WebService.Data;
-using Translator.WebService.Controllers;
+using Translator.WebService.BackgroundServices;
 
 namespace Translator.WebService
 {
@@ -21,9 +21,11 @@ namespace Translator.WebService
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
-                        builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddEndpointsApiExplorer();
 
-                        builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddHostedService<TranslationService>();
 
             var app = builder.Build();
 
@@ -39,11 +41,11 @@ namespace Translator.WebService
                 app.UseHsts();
             }
 
-                        if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-};
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            };
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
