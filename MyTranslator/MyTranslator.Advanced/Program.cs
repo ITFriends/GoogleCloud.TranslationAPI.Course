@@ -5,7 +5,7 @@ namespace MyTranslator.Advanced
 {
     internal class Program
     {
-        private static readonly string projectId = "lateral-land-411914";
+        private static readonly string projectId = "<put_your_google_cloud_project_id_here>";
 
         static void Main(string[] args)
         {
